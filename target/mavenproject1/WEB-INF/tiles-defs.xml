@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/tiles-config_1_3.dtd">
+<tiles-definitions>
+	<definition name=".catalogLayout" path="/WEB-INF/tiles/catalog/layout/layout.jsp">
+		<put name="title" value=""/>
+		<put name="header" value="/WEB-INF/tiles/catalog/layout/header.jsp"/>		
+		<put name="left-menu" value="left-menu.page"/>
+		<put name="right-menu" value="right-menu.page"/>
+		<put name="body" value=""/>		
+		<put name="footer" value="/WEB-INF/tiles/catalog/layout/footer.jsp"/>
+	</definition>
+	<definition name="left-menu.page" path="/WEB-INF/tiles/catalog/layout/left-menu-layout.jsp">
+		<put name="category-menu" value="/actions/catalog/categoryMenu.do"/>
+		<put name="login-menu" value="/actions/catalog/loginMenu.do"/>
+	</definition>
+	<definition name="right-menu.page" path="/WEB-INF/tiles/catalog/layout/right-menu-layout.jsp">
+		<put name="cart-menu" value="/WEB-INF/tiles/catalog/layout/cart-menu.jsp"/>
+		<put name="bestsellers" value="/actions/catalog/bestsellers.do"/>
+	</definition>
+	<!--======================== Catalog Layout ============================== -->
+	<definition name="home.page" extends=".catalogLayout">
+		<put name="title" value="Welcome"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-home.jsp"/>
+	</definition>
+	<definition name="catalog.page" extends=".catalogLayout">
+		<put name="title" value="Catalog"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-catalog.jsp"/>
+	</definition>
+	<definition name="product-detail.page" extends=".catalogLayout">
+		<put name="title" value="Product Details"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-product-detail.jsp"/>
+	</definition>
+	<definition name="search.page" extends=".catalogLayout">
+		<put name="title" value="Search"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-search.jsp"/>
+	</definition>
+	
+	
+	<definition name="about.page" extends=".catalogLayout">
+		<put name="title" value="About Us"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-about.jsp"/>
+	</definition>
+	
+	<definition name="terms.page" extends=".catalogLayout">
+		<put name="title" value="Terms And Conditions"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-terms.jsp"/>
+	</definition>
+	<definition name="contact.page" extends=".catalogLayout">
+		<put name="title" value="Contact Us"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-contact.jsp"/>
+	</definition>
+	<!--======================== Shopping Cart Layout ============================== -->
+	<definition name="cart.page" extends=".catalogLayout">
+		<put name="title" value="Cart"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-cart.jsp"/>
+	</definition>
+	<definition name="delivery-information.page" extends=".catalogLayout">
+		<put name="title" value="Delivery Information"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-delivery-information.jsp"/>
+	</definition>
+	<definition name="order-information.page" extends=".catalogLayout">
+		<put name="title" value="Order Information"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-order-information.jsp"/>
+	</definition>
+	<definition name="input-order.page" extends=".catalogLayout">
+		<put name="title" value="Order Information"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-input-order.jsp"/>
+	</definition>
+	<!--======================== Account Layout ============================== -->
+	<definition name="login.page" extends=".catalogLayout">
+		<put name="title" value="Login"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-login.jsp"/>
+	</definition>
+	<definition name="forget.page" extends=".catalogLayout">
+		<put name="title" value="Forget Password"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-forget.jsp"/>
+	</definition>	
+	<definition name="send-password.page" extends=".catalogLayout">
+		<put name="title" value="Send Password"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-send-password.jsp"/>
+	</definition>
+	<definition name="signup.page" extends=".catalogLayout">
+		<put name="title" value="Signup"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-signup.jsp"/>
+	</definition>
+	<definition name="customer-account.page" extends=".catalogLayout">
+		<put name="title" value="Account"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-customer-account.jsp"/>
+	</definition>
+	<definition name="edit-account.page" extends=".catalogLayout">
+		<put name="title" value="Edit Account"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-edit-account.jsp"/>
+	</definition>
+	<definition name="change-password.page" extends=".catalogLayout">
+		<put name="title" value="Change Password"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-change-password.jsp"/>
+	</definition>
+	<definition name="show-addresses.page" extends=".catalogLayout">
+		<put name="title" value="Address Book"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-show-addresses.jsp"/>
+	</definition>
+	<definition name="edit-address.page" extends=".catalogLayout">
+		<put name="title" value="Edit Address"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-edit-address.jsp"/>
+	</definition>
+	<definition name="order-history.page" extends=".catalogLayout">
+		<put name="title" value="Order History"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-order-history.jsp"/>
+	</definition>
+	<definition name="order-invoice.page" extends=".catalogLayout">
+		<put name="title" value="Order Invoice"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-order-invoice.jsp"/>
+	</definition>
+	<definition name="confirm-order.page" extends=".catalogLayout">
+		<put name="title" value="Confirm Order"/>
+		<put name="body" value="/WEB-INF/tiles/catalog/pages/body-confirm-order.jsp"/>
+	</definition>
+	<!--======================== Admin Layout ============================== -->
+		
+	<definition name=".adminLayout" path="/WEB-INF/tiles/admin/layout/layout.jsp">
+		<put name="title" value=""/>
+		<put name="header" value="/WEB-INF/tiles/admin/layout/header.jsp"/>
+		<put name="menu" value="/WEB-INF/tiles/admin/layout/menu.jsp"/>		
+		<put name="body" value=""/>		
+		<put name="footer" value="/WEB-INF/tiles/admin/layout/footer.jsp"/>
+	</definition>
+	<definition name="category-list.page" extends=".adminLayout">
+		<put name="title" value="Category List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-category-list.jsp"/>
+	</definition>
+	<definition name="category-form.page" extends=".adminLayout">
+		<put name="title" value="Category Form"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-category-form.jsp"/>
+	</definition>
+	<definition name="product-list.page" extends=".adminLayout">
+		<put name="title" value="Product List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-product-list.jsp"/>
+	</definition>
+	<definition name="product-form.page" extends=".adminLayout">
+		<put name="title" value="Product Form"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-product-form.jsp"/>
+	</definition>
+	<definition name="customer-list.page" extends=".adminLayout">
+		<put name="title" value="Customer List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-customer-list.jsp"/>
+	</definition>
+	<definition name="customer-form.page" extends=".adminLayout">
+		<put name="title" value="Customer Form"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-customer-form.jsp"/>
+	</definition>
+	<definition name="order-list.page" extends=".adminLayout">
+		<put name="title" value="Order List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-order-list.jsp"/>
+	</definition>
+	<definition name="order-form.page" extends=".adminLayout">
+		<put name="title" value="Order Form"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-order-form.jsp"/>
+	</definition>
+	<definition name="confirm-order-list.page" extends=".adminLayout">
+		<put name="title" value="Confirmed Order List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-confirm-order-list.jsp"/>
+	</definition>
+	<definition name="rekening-list.page" extends=".adminLayout">
+		<put name="title" value="Rekening List"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-rekening-list.jsp"/>
+	</definition>
+	<definition name="rekening-form.page" extends=".adminLayout">
+		<put name="title" value="Rekening Form"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-rekening-form.jsp"/>
+	</definition>
+	<definition name="report.page" extends=".adminLayout">
+		<put name="title" value="Reports"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-report.jsp"/>
+	</definition>
+	<definition name="mail.page" extends=".adminLayout">
+		<put name="title" value="Mail"/>
+		<put name="body" value="/WEB-INF/tiles/admin/pages/body-mail.jsp"/>
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>    	
+		<form-bean name="categoryForm"
+			type="id.ac.bsi.comcart.models.CategoryFormBean">
+		</form-bean>
+		<form-bean name="productForm"
+			type="id.ac.bsi.comcart.models.ProductFormBean">
+		</form-bean>
+		<form-bean name="rekeningForm"
+			type="id.ac.bsi.comcart.models.RekeningFormBean">
+		</form-bean>
+		<form-bean name="loginForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="email" type="java.lang.String" initial=""/>
+			<form-property name="password" type="java.lang.String" initial=""/>
+		</form-bean>
+		<form-bean name="signupForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="firstName" type="java.lang.String" initial=""/>
+			<form-property name="lastName" type="java.lang.String" initial=""/>
+			<form-property name="email" type="java.lang.String" initial=""/>
+			<form-property name="phone" type="java.lang.String" initial=""/>
+			
+			<form-property name="address" type="java.lang.String" initial=""/>
+			<form-property name="zip" type="java.lang.String" initial=""/>
+			<form-property name="city" type="java.lang.String" initial=""/>
+			<form-property name="country" type="java.lang.String" initial=""/>
+			<form-property name="region" type="java.lang.String" initial=""/>
+			
+			<form-property name="password" type="java.lang.String" initial=""/>			
+			<form-property name="password2" type="java.lang.String" initial=""/>
+			
+			<form-property name="newPassword" type="java.lang.String" initial=""/>
+			<form-property name="newPassword2" type="java.lang.String" initial=""/>			
+		</form-bean>
+		<form-bean name="confirmOrderForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="orderId" type="java.lang.String" initial=""/>
+			<form-property name="price" type="java.lang.String" initial=""/>
+			<form-property name="transferDate" type="java.lang.String" initial=""/>
+		</form-bean>
+    </form-beans>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+    	
+    	<!-- ============================ Catalog Action =================== -->    	
+    	<!-- ======================== Tiles =============== -->    	
+		<action path="/actions/catalog/loginMenu"
+				type="id.ac.bsi.comcart.actions.catalog.LoginMenuAction">
+			<forward name="success" path="/WEB-INF/tiles/catalog/layout/account-menu.jsp"/>
+			<forward name="failed" path="/WEB-INF/tiles/catalog/layout/login-menu.jsp"/>
+		</action>
+		<action path="/actions/catalog/categoryMenu"
+				type="id.ac.bsi.comcart.actions.catalog.CategoryMenuAction">
+			<forward name="success" path="/WEB-INF/tiles/catalog/layout/category-menu.jsp"/>
+		</action>
+		<action path="/actions/catalog/bestsellers"
+				type="id.ac.bsi.comcart.actions.catalog.BestsellersAction">
+			<forward name="success" path="/WEB-INF/tiles/catalog/layout/bestsellers.jsp"/>
+		</action>
+		
+		<!-- ======================== Catalog =============== -->
+		<action path="/home"
+				type="id.ac.bsi.comcart.actions.catalog.HomeAction">
+			<forward name="success" path="/view/catalog/pages/home.jsp"/>
+		</action>
+		<action path="/actions/catalog/catalog"
+				type="id.ac.bsi.comcart.actions.catalog.CatalogAction">
+			<forward name="success" path="/view/catalog/pages/catalog.jsp"/>
+		</action>
+		<action path="/actions/catalog/productDetails"
+				type="id.ac.bsi.comcart.actions.catalog.ProductDetailsAction">
+			<forward name="success" path="/view/catalog/pages/product-detail.jsp"/>
+		</action>
+		<action path="/actions/catalog/search"
+				type="id.ac.bsi.comcart.actions.catalog.SearchAction">
+			<forward name="success" path="/view/catalog/pages/search.jsp"/>
+			<forward name="failed" path="/home.do"/>
+		</action>
+		
+		<!-- ======================== Shopping Cart =============== -->
+		<action path="/actions/catalog/addToCart"
+				type="id.ac.bsi.comcart.actions.catalog.AddToCartAction">
+			<forward name="success" path="/actions/catalog/productDetails.do"/>
+			<forward name="showCart" path="/view/catalog/pages/cart.jsp"/>
+		</action>
+		<action path="/actions/catalog/checkOut"
+				type="id.ac.bsi.comcart.actions.catalog.CheckOutAction">
+			<forward name="delivery" path="/view/catalog/pages/delivery-information.jsp"/>
+			<forward name="order" path="/view/catalog/pages/order-information.jsp"/>
+			<forward name="input-order" path="/view/catalog/pages/input-order.jsp"/>
+			<forward name="cart" path="/view/catalog/pages/cart.jsp"/>
+			<forward name="failed" path="/view/catalog/pages/login.jsp"/>
+		</action>
+		<action path="/actions/catalog/addAddress"
+				type="id.ac.bsi.comcart.actions.catalog.AddAddressAction"
+				name="signupForm"
+				scope="request"
+				input="/view/catalog/pages/delivery-information.jsp"
+				validate="true"
+				cancellable="true">
+			<forward name="success" path="/view/catalog/pages/delivery-information.jsp"/>
+			<forward name="failed" path="/view/catalog/pages/cart.jsp"/>
+		</action>
+		<!-- ======================== Account =============== -->
+		<action path="/actions/catalog/login"
+				type="id.ac.bsi.comcart.actions.catalog.LoginAction"
+				name="loginForm"
+				scope="request"
+				input="/view/catalog/pages/login.jsp"				
+				validate="true"
+				cancellable="true">			
+			<forward name="success" path="/home.do"/>
+			<forward name="failed" path="/view/catalog/pages/login.jsp"/>
+		</action>
+		<action path="/actions/catalog/logout"
+				type="id.ac.bsi.comcart.actions.catalog.LogoutAction">
+			<forward name="success" path="/home.do"/>
+		</action>
+		<action path="/actions/catalog/signup"
+				type="id.ac.bsi.comcart.actions.catalog.SignupAction"
+				name="signupForm"
+				scope="request"
+				input="/view/catalog/pages/signup.jsp"				
+				validate="true"
+				cancellable="true">				
+			<forward name="success" path="/home.do"/>
+			<forward name="failed" path="/view/catalog/pages/signup.jsp"/>
+		</action>
+		<action path="/actions/catalog/forget"
+				type="id.ac.bsi.comcart.actions.catalog.ForgetAction"
+				name="loginForm"
+				scope="request"
+				input="/view/catalog/pages/forget.jsp"				
+				validate="true"
+				cancellable="true">
+			<forward name="success" path="/view/catalog/pages/send-password.jsp"/>
+			<forward name="failed" path="/view/catalog/pages/forget.jsp"/>
+		</action>
+		<action path="/actions/catalog/account"
+				type="id.ac.bsi.comcart.actions.catalog.AccountAction"
+				name="signupForm"
+				scope="request"
+				input="/view/catalog/pages/edit-account.jsp"				
+				validate="false"
+				cancellable="true">
+			<forward name="cancel" path="/home.do"/>	
+			<forward name="success" path="/home.do"/>
+			<forward name="failed" path="/view/catalog/pages/edit-account.jsp"/>
+			<forward name="editAccount" path="/view/catalog/pages/edit-account.jsp"/>
+			<forward name="changePassword" path="/view/catalog/pages/change-password.jsp"/>
+			<forward name="failedPassword" path="/view/catalog/pages/change-password.jsp"/>
+			<forward name="showAddresses" path="/view/catalog/pages/show-addresses.jsp"/>
+		</action>
+		<action path="/actions/catalog/editAddress"
+				type="id.ac.bsi.comcart.actions.catalog.EditAddressAction"
+				name="signupForm"
+				scope="request"
+				input="/view/catalog/pages/edit-address.jsp"				
+				validate="false"
+				cancellable="true">
+			<forward name="edit" path="/view/catalog/pages/edit-address.jsp"/>
+			<forward name="save" path="/view/catalog/pages/show-addresses.jsp"/>
+			<forward name="delete" path="/view/catalog/pages/show-addresses.jsp"/>
+			<forward name="failed" path="/view/catalog/pages/edit-address.jsp"/>
+			<forward name="showAddress" path="/view/catalog/pages/show-addresses.jsp"/>
+		</action>
+		<action path="/actions/catalog/orderHistory"
+				type="id.ac.bsi.comcart.actions.catalog.OrderHistoryAction">
+			<forward name="success" path="/view/catalog/pages/order-history.jsp"/>
+			<forward name="failed" path="/view/catalog/pages/order-history.jsp"/>
+			<forward name="orderInvoice" path="/view/catalog/pages/order-invoice.jsp"/>			
+		</action>
+		<action path="/actions/catalog/confirmOrder"
+				type="id.ac.bsi.comcart.actions.catalog.ConfirmOrderAction"
+				name="confirmOrderForm"
+				scope="request"
+				input="/view/catalog/pages/confirm-order.jsp"
+				validate="true"
+				cancellable="true">
+			<forward name="success" path="/home.do"/>
+			<forward name="failed" path="/view/catalog/pages/confirm-order.jsp"/>
+		</action>
+		<!-- ============================ Language Action======================= -->
+		<action path="/actions/catalog/locale" 
+			    parameter="method" 
+			    type="id.ac.bsi.comcart.actions.catalog.LocaleAction">
+            <forward name="success" path="/home.do" />
+        </action>
+		<!-- ============================ Admin Action======================= -->
+		<action path="/actions/admin/adminLogin"
+				type="id.ac.bsi.comcart.actions.admin.AdminLoginAction">
+			<forward name="success" path="/actions/admin/orderList.do"/>
+			<forward name="cancel" path="/actions/admin/orderList.do"/>
+			<forward name="failed" path="/view/admin/pages/login.jsp"/>
+		</action>
+		<action path="/actions/admin/categoryList"
+				type="id.ac.bsi.comcart.actions.admin.CategoryListAction">
+			<forward name="success" path="/view/admin/pages/category-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>		
+		<action path="/actions/admin/categoryForm"
+				type="id.ac.bsi.comcart.actions.admin.CategoryFormAction"
+				name="categoryForm"
+				scope="request"
+				input="/view/admin/pages/category-form.jsp"
+				validate="false"
+				cancellable="true">
+			<forward name="success" path="/view/admin/pages/category-form.jsp"/>
+			<forward name="failed" path="/view/admin/pages/category-form.jsp"/>
+			<forward name="save" path="/actions/admin/categoryList.do"/>
+		</action>
+		
+		<action path="/actions/admin/productList"
+				type="id.ac.bsi.comcart.actions.admin.ProductListAction">
+			<forward name="success" path="/view/admin/pages/product-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>				
+		<action path="/actions/admin/productForm"
+				type="id.ac.bsi.comcart.actions.admin.ProductFormAction"
+				name="productForm"
+				scope="request"
+				input="/view/admin/pages/product-form.jsp"
+				validate="false"
+				cancellable="true">
+			<forward name="success" path="/view/admin/pages/product-form.jsp"/>
+			<forward name="failed" path="/view/admin/pages/product-form.jsp"/>
+			<forward name="save" path="/actions/admin/productList.do"/>
+		</action>
+		<action path="/actions/admin/customerList"
+				type="id.ac.bsi.comcart.actions.admin.CustomerListAction">
+			<forward name="success" path="/view/admin/pages/customer-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>
+		<action path="/actions/admin/customerForm"
+				type="id.ac.bsi.comcart.actions.admin.CustomerFormAction">
+			<forward name="success" path="/view/admin/pages/customer-form.jsp"/>
+			<forward name="failed" path="/view/admin/pages/customer-form.jsp"/>
+			<forward name="save" path="/actions/admin/customerList.do"/>
+		</action>
+		<action path="/actions/admin/mail"
+				type="id.ac.bsi.comcart.actions.admin.MailAction">
+			<forward name="success" path="/view/admin/pages/mail.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>
+		<action path="/actions/admin/orderList"
+				type="id.ac.bsi.comcart.actions.admin.OrderListAction">
+			<forward name="success" path="/view/admin/pages/order-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>
+		
+		<action path="/actions/admin/orderForm" type="id.ac.bsi.comcart.actions.admin.OrderFormAction">
+			<forward name="success" path="/view/admin/pages/order-form.jsp"/>
+			
+			<forward name="failed" path="/view/admin/pages/order-form.jsp"/>
+			<forward name="save" path="/actions/admin/orderList.do"/>
+		</action>
+		<action path="/actions/admin/confirmOrderList"
+				type="id.ac.bsi.comcart.actions.admin.ConfirmOrderListAction">
+			<forward name="success" path="/view/admin/pages/confirm-order-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>
+		<action path="/actions/admin/rekeningList"
+				type="id.ac.bsi.comcart.actions.admin.RekeningListAction">
+			<forward name="success" path="/view/admin/pages/rekening-list.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>		
+		<action path="/actions/admin/rekeningForm"
+				type="id.ac.bsi.comcart.actions.admin.RekeningFormAction"
+				name="rekeningForm"
+				scope="request"
+				input="/pages/admin/rekening-form.jsp"
+				validate="false"
+				cancellable="true">
+			<forward name="success" path="/view/admin/pages/rekening-form.jsp"/>
+			<forward name="failed" path="/view/admin/pages/rekening-form.jsp"/>
+			<forward name="save" path="/actions/admin/rekeningList.do"/>
+		</action>
+		<action path="/actions/admin/report"
+				type="id.ac.bsi.comcart.actions.admin.ReportAction">
+			<forward name="success" path="/view/admin/pages/report.jsp"/>
+			<forward name="admin" path="/view/admin/pages/login.jsp"/>
+		</action>
+    </action-mappings>
+
+
+<!-- ======================================== Message Resources Definitions -->
+
+    <message-resources parameter="MessageResources" />
+
+
+
+
+<!-- =============================================== Plug Ins Configuration -->
+
+  <!-- ======================================================= Tiles plugin -->
+
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/org/apache/struts/validator/validator-rules.xml,
+               /WEB-INF/validation.xml"/>
+  </plug-in>
+  <!-- =================================================== Startup plugin -->
+  <plug-in className="id.ac.bsi.comcart.utils.StartupManager" />
+</struts-config>
+

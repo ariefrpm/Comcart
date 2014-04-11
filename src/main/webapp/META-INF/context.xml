@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/mavenproject1">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="50" maxIdle="30" maxWait="10000" name="jdbc/ariefrpm" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/db_comcart" username="root"/>
+  <!--  <Resource name="jdbc/comcartDB" auth="Container" type="javax.sql.DataSource"
+               maxActive="50" maxIdle="30" maxWait="10000"
+               username="ariefrpm3" password="apaanaja"
+               driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost:3307/ariefrpm3?autoReconnect=true"/> -->
+</Context>
